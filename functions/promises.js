@@ -10,18 +10,25 @@ getDatacallback((err, data) => {
     }
 })
 
-const getDataPromise = () => new Promise((resolve, reject) => {
+const getDataPromise = (num) => new Promise((resolve, reject) => {
     setTimeout(()=>{
-        resolve('resolve')
-        reject('reject')
+        typeof num === 'number' ? resolve(num *2) : reject('Number must be provided')
     },2000)
 })
 
-const myPeomise = getDataPromise()
+const myPromise = getDataPromise()
 
-myPeomise.then((data) => {
+myPromise.then((data) => {
     console.log(data)
 }, (err)=>{
     console.log(err);
 })
 
+getDataPromise(10).then((data) => getDataPromise(data)
+).then((data)=> {
+   return getDataPromise(data)
+}).then((data) => {
+    console.log(data);
+}).catch((err)=>{
+    console.log(err);
+})
