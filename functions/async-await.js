@@ -7,6 +7,7 @@ const getDAtaPromise = (num) => new Promise((resolve, reject) => {
 const processData = async () => {
     let data = await getDAtaPromise(2)
     data = await getDAtaPromise(data)
+    console.log(typeof data)
     return data
 }
 
